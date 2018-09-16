@@ -1,11 +1,12 @@
-var PROTO_PATH = __dirname + '/protofile.proto';
+var PROTO_PATH = __dirname + '/../protofile.proto';
 
 var grpc = require('grpc');
 var hello_proto = grpc.load(PROTO_PATH).helloworld;
 
 var fs = require('fs');
 
-var contents = fs.readFileSync('file.data', 'utf8');
+var constants = require('../constants');
+var contents = fs.readFileSync(constants.filename, 'utf8');
 
 function PostCode() {
   var client = new hello_proto.Greeter('localhost:50051',grpc.credentials.createInsecure());
